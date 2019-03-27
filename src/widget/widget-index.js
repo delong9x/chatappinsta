@@ -10,6 +10,18 @@ if (window.attachEvent) {
     window.addEventListener('load', injectChat, false);
 }
 
+if (document.getElementById('reload-instagrchat')) {
+    document.getElementById('reload-instagrchat').onclick = function () {
+        if (document.getElementById('intergramRoot')) {
+            window.intergramCustomizations.isChatOpen = true;
+            var elem = document.getElementById("intergramRoot");
+            elem.parentElement.removeChild(elem);
+        }
+        injectChat();
+
+    }
+}
+
 function injectChat() {
     if (!window.sourceServer) {
         console.error('Please set window.desinationId');
@@ -23,6 +35,7 @@ function injectChat() {
         conf.urlRequest = urlRequest;
         conf.isFree = false;
         const iFrameSrc = conf.requestServer + '/chat.html';
+
 
         axios.get(conf.requestServer+'/website/'+urlRequest)
             .then((response)=>{

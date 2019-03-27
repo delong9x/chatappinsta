@@ -118,13 +118,18 @@ export default class Widget extends Component {
         const avatar = conf.closedChatAvatarUrl ? conf.closedChatAvatarUrl : 'https://api.telegrchat.com/media/avatar.png';
 
         let classCloseBtn = (isMobile) ? wrapCloseBtnTitleMobile : hiddenClass;
-
+        if (conf.isChatOpen) {
+            this.onClick()
+            conf.isChatOpen = false
+            this.setState({
+                wasChatOpened: true
+            })
+        }
 
         return (
             <div style={globalStyle}>
                 <div id="wrap-click" style={wrapperStyle} class={isChatOpen ? 'isOpen': ''} data-mobile={isMobile ? 'mobile' : 'desktop'} is-reacted="0">
                     <link rel='stylesheet' src='https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,800&amp;subset=vietnamese' />
-                    {/* Open/close button */}
                     { isMobile && !isChatOpen ?
 
                         <div onClick={this.onClick}>
