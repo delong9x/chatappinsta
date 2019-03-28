@@ -73,7 +73,7 @@ app.post('/hook', function (req, res) {
                 if (text.startsWith('/start')) {
                     console.log('/start chatId ' + chatId);
                     sendTelegramMessage(chatId,
-                        '*Welcome to ASC Chat* \n' +
+                        '*Welcome to SimpleChat* \n' +
                         'Your unique chat id is `' + chatId + '`',
                         'Markdown');
                 } else if (reply) {
